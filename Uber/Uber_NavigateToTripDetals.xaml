@@ -2,6 +2,7 @@
   <x:Members>
     <x:Property Name="in_TripDetailsURL" Type="InArgument(x:String)" />
     <x:Property Name="in_TripID" Type="InArgument(x:String)" />
+    <x:Property Name="in_UberBrowser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -57,7 +58,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: Navigates to the specified Uber trip details&#xD;&#xA;&#xD;&#xA;Pre-Condition: Any Uber page&#xD;&#xA;Post-Condition: Uber trip details page" DisplayName="Uber_NavigateToTripDetals" sap:VirtualizedContainerService.HintSize="561,925" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Description: Navigates to the specified Uber trip details&#xA;&#xA;Pre-Condition: Any Uber page&#xA;Post-Condition: Uber trip details page" DisplayName="Uber_NavigateToTripDetals" sap:VirtualizedContainerService.HintSize="561,925" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="DoesBackToTripsExist" />
     </Sequence.Variables>
@@ -67,7 +68,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser Uber" sap:VirtualizedContainerService.HintSize="539,475" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d09e428ce0952be5e244125c47c252d8" Selector="&lt;html app='chrome.exe' title='*Uber*' /&gt;">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UberBrowser]" BrowserType="Chrome" DisplayName="Attach Browser Uber" sap:VirtualizedContainerService.HintSize="539,475" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d09e428ce0952be5e244125c47c252d8">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

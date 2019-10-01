@@ -1,8 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ProcessTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessTransaction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_UberBrowser" Type="InArgument(ui:Browser)" />
   </x:Members>
+  <this:ProcessTransaction.in_UberBrowser>
+    <InArgument x:TypeArguments="ui:Browser" />
+  </this:ProcessTransaction.in_UberBrowser>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
@@ -69,6 +73,7 @@
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_TripDetailsURL">[in_Config("Uber_TripDetails_URL").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_TripID">[in_TransactionItem("Trip ID").ToString]</InArgument>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="in_UberBrowser">[in_UberBrowser]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Uber_DownloadTripReceipt workflow" sap:VirtualizedContainerService.HintSize="314,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Uber\Uber_DownloadTripReceipt.xaml">
@@ -76,6 +81,7 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_Filepath">[in_Config("Uber_Receipts_Filepath").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Total">[in_TransactionItem("Total").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_Date">[in_TransactionItem("Date").ToString]</InArgument>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="in_UberBrowser">[in_UberBrowser]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

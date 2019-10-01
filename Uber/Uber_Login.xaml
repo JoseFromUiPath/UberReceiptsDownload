@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property Name="in_Username" Type="InArgument(x:String)" />
     <x:Property Name="in_Password" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="in_UberBrowser" Type="InArgument(ui:Browser)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>998,2418</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>998,2420</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,20 +59,20 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Description: Used to login to Uber. Verifies if user needs to log in otherwise takes you to Rider landing page.&#xD;&#xA;&#xD;&#xA;Pre-Con: Uber home page&#xD;&#xA;Post-Con: Uber rider landing page" DisplayName="Uber_Login" sap:VirtualizedContainerService.HintSize="958,2338" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Description: Used to login to Uber. Verifies if user needs to log in otherwise takes you to Rider landing page.&#xA;&#xA;Pre-Con: Uber home page&#xA;Post-Con: Uber rider landing page" DisplayName="Uber_Login" sap:VirtualizedContainerService.HintSize="958,2300" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser Uber" sap:VirtualizedContainerService.HintSize="936,2138" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="9f93f51a8b6813f45cef6819acc19cc2" Selector="&lt;html app='chrome.exe' title='Uber - Earn Money by Driving or Get a Ride Now' /&gt;">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[in_UberBrowser]" BrowserType="Chrome" DisplayName="Attach Browser Uber" sap:VirtualizedContainerService.HintSize="936,2100" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="9f93f51a8b6813f45cef6819acc19cc2">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="922,1992" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="922,1954" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <Sequence.Variables>
               <Variable x:TypeArguments="ui:GenericValue" Name="FourDigitCode" />
               <Variable x:TypeArguments="x:Boolean" Name="IsLoggedIn" />
@@ -112,9 +113,9 @@
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="5296c1b948b6fe389d0929e68552fb54" Selector="&lt;webctrl aaname='Rider login' parentid='root' tag='SPAN' /&gt;" WaitForReady="COMPLETE" />
               </ui:Click.Target>
             </ui:Click>
-            <ui:UiElementExists DisplayName="Element Exists Enter phone number" Exists="[IsLoginRequested]" sap:VirtualizedContainerService.HintSize="900,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+            <ui:UiElementExists DisplayName="Element Exists Enter phone number" Exists="[IsLoginRequested]" sap:VirtualizedContainerService.HintSize="900,68" sap2010:WorkflowViewState.IdRef="UiElementExists_4">
               <ui:UiElementExists.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="58894636c72a41072535eabe5b22adff" Selector="&lt;webctrl id='mobile' tag='INPUT' /&gt;" TimeoutMS="5000" WaitForReady="INTERACTIVE" />
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;webctrl tag='INPUT' aaname='*mobile*' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
               </ui:UiElementExists.Target>
             </ui:UiElementExists>
             <If Condition="[IsLoginRequested]" DisplayName="If Where can we pick you up? Exists" sap:VirtualizedContainerService.HintSize="900,1430" sap2010:WorkflowViewState.IdRef="If_2">
@@ -127,7 +128,7 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into Phone Number" EmptyField="False" sap:VirtualizedContainerService.HintSize="539,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[in_Username]">
                     <ui:TypeInto.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ef4d4dbd54b49061f56a64ec4f639b59" Selector="&lt;webctrl id='mobile' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ef4d4dbd54b49061f56a64ec4f639b59" Selector="&lt;webctrl tag='INPUT' aaname='*mobile*' /&gt;" WaitForReady="INTERACTIVE" />
                     </ui:TypeInto.Target>
                   </ui:TypeInto>
                   <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send Hotkey Enter" EmptyField="False" sap:VirtualizedContainerService.HintSize="539,117" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
